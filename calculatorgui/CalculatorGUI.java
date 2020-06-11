@@ -17,11 +17,11 @@ public class CalculatorGUI extends JFrame {
   private HotDrinkPanel hotDrinks; // Topping panel     
   private CoffeePanel coffee;    // Coffee panel     
   private GreetingPanel banner;  // To display a greeting 
-  private ColdTeasPanel coldTeas;
-  private HotTeasPanel hotTeas;
-  private ExpressoPanel expressos;
-  private ColdCoffeesPanel coldCoffees;
-  private ExtrasPanel extras;
+  private ColdTeasPanel coldTeas; //Cold Teas Panel
+  private HotTeasPanel hotTeas;  //Hot Teas Panel
+  private ExpressoPanel expressos; //Expressos Panel
+  private ColdCoffeesPanel coldCoffees; //Cold Coffees Panel
+  private ExtrasPanel extras;    //Extras Panel
   private JPanel buttonPanel;    // To hold the buttons  
   private JButton calcButton;    // To calculate the cost  
   private JButton exitButton;    // To exit the application    
@@ -37,10 +37,7 @@ public class CalculatorGUI extends JFrame {
     setTitle("Starbucks Drink Order Calculator");
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-    // Create a BorderLayout manager.
-   
-
+    
     // Create the custom panels.
     banner = new GreetingPanel();
     frapps = new FrappuccinoPanel();
@@ -52,6 +49,7 @@ public class CalculatorGUI extends JFrame {
     coldCoffees = new ColdCoffeesPanel();
     extras = new ExtrasPanel();
 
+    //Set layout to a new 4x3 GridLayout
     setLayout(new GridLayout(4,3));
 
     // Add the components to the content pane.
@@ -69,7 +67,7 @@ public class CalculatorGUI extends JFrame {
     buildButtonPanel();
     add(buttonPanel);
     
-// Pack the contents of the window and display it.
+    // Pack the contents of the window and display it.
     pack();
     setVisible(true);
 
@@ -96,8 +94,10 @@ public class CalculatorGUI extends JFrame {
   private class CalcButtonListener implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
+      
       // Variables to hold the subtotal, tax, and total     
       double subtotal, tax, total;
+      
       // Calculate the subtotal.
       subtotal = frapps.getFrappCost()
           + hotDrinks.getHotDrinkCost()
@@ -107,10 +107,13 @@ public class CalculatorGUI extends JFrame {
           + coldCoffees.getColdCoffeeCost()
           + extras.getExtrasCost()
           + coffee.getCoffeeCost();
+      
       //Calculate the sales tax.
       tax = subtotal * TAX_RATE;
+      
       // Calculate the total.
       total = subtotal + tax;
+      
       // Display the charges.
       JOptionPane.showMessageDialog(null,
           String.format("Subtotal: $%,.2f\n"
